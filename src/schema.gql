@@ -1,0 +1,52 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  createdDate: DateTime!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PaginatedUsers {
+  users: [User!]!
+  total: Int!
+}
+
+type Query {
+  getUsers(params: QueryUserDto): PaginatedUsers!
+  getUser(id: String!): User!
+}
+
+input QueryUserDto {
+  search: String
+  sort: String
+  page: Int
+  pageSize: Int
+}
+
+type Mutation {
+  createUser(user: CreateUserDto!): User!
+  updateUser(user: UpdateUserDto!): User!
+  deleteUser(id: String!): String!
+}
+
+input CreateUserDto {
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+input UpdateUserDto {
+  firstName: String
+  lastName: String
+  email: String
+  id: String!
+}
